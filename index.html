@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Queue and Token Management System">
+
+    <title>Queue & Token Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎟️
+            </div>
+
+            <div>
+                <h1>QueueFlow</h1>
+                <span>Queue & Token Management</span>
+            </div>
+
+        </div>
+
+
+        <div class="header-right">
+
+            <div class="date-time">
+
+                <span id="currentDate">
+                    Loading...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+
+            <button id="themeButton" class="icon-button" title="Toggle theme">
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section class="dashboard">
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h2>Queue Dashboard</h2>
+
+                    <p>
+                        Manage customers and tokens efficiently.
+                    </p>
+
+                </div>
+
+
+                <div class="system-status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        🎟️
+                    </div>
+
+                    <div>
+
+                        <span>Total Tokens</span>
+
+                        <strong id="totalTokens">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <span>Waiting</span>
+
+                        <strong id="waitingTokens">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <span>Served</span>
+
+                        <strong id="servedTokens">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        🏪
+                    </div>
+
+                    <div>
+
+                        <span>Active Counters</span>
+
+                        <strong id="activeCounters">
+                            3
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CURRENT TOKEN ================= -->
+
+        <section class="display-card">
+
+            <div class="display-title">
+
+                <span>🔊 NOW SERVING</span>
+
+                <span id="counterDisplay">
+                    Counter 1
+                </span>
+
+            </div>
+
+
+            <div class="current-token">
+
+                <span id="currentToken">
+                    ---
+                </span>
+
+            </div>
+
+
+            <div class="customer-display">
+
+                <strong id="currentCustomer">
+                    No customer
+                </strong>
+
+                <span id="currentService">
+                    Waiting for next customer
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= CONTROL AREA ================= -->
+
+        <section class="control-grid">
+
+
+            <!-- TOKEN GENERATOR -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Generate Token</h3>
+
+                        <p>
+                            Register a new customer.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        🎟️
+                    </span>
+
+                </div>
+
+
+                <form id="tokenForm">
+
+
+                    <div class="form-group">
+
+                        <label for="customerName">
+                            Customer Name
+                        </label>
+
+                        <input type="text" id="customerName" placeholder="Enter customer name" maxlength="40" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="serviceType">
+                            Service
+                        </label>
+
+                        <select id="serviceType" required>
+
+                            <option value="">
+                                Select service
+                            </option>
+
+                            <option value="General Service">
+                                General Service
+                            </option>
+
+                            <option value="Billing">
+                                Billing
+                            </option>
+
+                            <option value="Enquiry">
+                                Enquiry
+                            </option>
+
+                            <option value="Technical Support">
+                                Technical Support
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button type="submit" class="btn primary full">
+
+                        🎟️ Generate Token
+
+                    </button>
+
+                </form>
+
+
+                <div id="generatedToken" class="generated-token hidden">
+
+                    <span>Your Token</span>
+
+                    <strong id="generatedTokenNumber">
+                        T-001
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COUNTER CONTROL -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Counter Control</h3>
+
+                        <p>
+                            Manage the waiting queue.
+                        </p>
+
+                    </div>
+
+                    <span class="card-icon">
+                        🏪
+                    </span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="counterSelect">
+                        Select Counter
+                    </label>
+
+                    <select id="counterSelect">
+
+                        <option value="1">
+                            Counter 1
+                        </option>
+
+                        <option value="2">
+                            Counter 2
+                        </option>
+
+                        <option value="3">
+                            Counter 3
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="button-grid">
+
+                    <button id="nextButton" class="btn success">
+                        ▶ Call Next
+                    </button>
+
+                    <button id="recallButton" class="btn warning">
+                        🔊 Recall
+                    </button>
+
+                    <button id="skipButton" class="btn danger">
+                        ⏭ Skip
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= QUEUE ================= -->
+
+        <section class="card queue-card">
+
+            <div class="card-header queue-heading">
+
+                <div>
+
+                    <h3>Waiting Queue</h3>
+
+                    <p>
+                        Customers waiting to be served.
+                    </p>
+
+                </div>
+
+
+                <div class="queue-actions">
+
+                    <input type="search" id="searchInput" placeholder="🔎 Search token...">
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Token</th>
+
+                            <th>Customer</th>
+
+                            <th>Service</th>
+
+                            <th>Time</th>
+
+                            <th>Wait</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="queueTable">
+
+                        <!-- JavaScript inserts rows -->
+
+                    </tbody>
+
+                </table>
+
+
+                <div id="emptyQueue" class="empty-state">
+
+                    <div>🎫</div>
+
+                    <h3>No customers waiting</h3>
+
+                    <p>
+                        Generate a token to add a customer.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>Service History</h3>
+
+                    <p>
+                        Recently completed customers.
+                    </p>
+
+                </div>
+
+                <button id="clearHistoryButton" class="small-button">
+                    Clear History
+                </button>
+
+            </div>
+
+
+            <div id="historyList" class="history-list">
+
+                <!-- JavaScript inserts history -->
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ADMIN ================= -->
+
+        <section class="admin-card">
+
+            <div>
+
+                <h3>System Management</h3>
+
+                <p>
+                    Reset all queue data and start a new session.
+                </p>
+
+            </div>
+
+
+            <button id="resetButton" class="btn danger">
+
+                🗑 Reset Entire System
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 QueueFlow — Queue & Token Management System
+        </p>
+
+        <span>
+            Built with HTML • CSS • JavaScript
+        </span>
+
+    </footer>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div id="toast" class="toast">
+        Message
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
